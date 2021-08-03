@@ -1,7 +1,13 @@
 import { BigNumber, BigNumberish, Contract, constants } from 'ethers'
 import { waffle, ethers } from 'hardhat'
 import { Fixture } from 'ethereum-waffle'
-import { SwapToRatioTest, TestERC20, MockTimeNonfungiblePositionManager, SwapRouter, IUniswapV3Factory, } from '../typechain'
+import {
+  SwapToRatioTest,
+  TestERC20,
+  MockTimeNonfungiblePositionManager,
+  SwapRouter,
+  IUniswapV3Factory,
+} from '../typechain'
 import { expect } from 'chai'
 import { expandTo18Decimals } from './shared/expandTo18Decimals'
 import { encodePriceSqrt } from './shared/encodePriceSqrt'
@@ -152,12 +158,14 @@ describe.only('SwapToRatio', () => {
           amount1Initial = expandTo18Decimals(150_000)
           const currentPrice = (await pool.slot0()).sqrtPriceX96
 
-          await snapshotGasCost(swapToRatio.getPostSwapPriceGas(poolAddress, {
-            sqrtRatioX96Lower: toSqrtFixedPoint96(priceLower),
-            sqrtRatioX96Upper: toSqrtFixedPoint96(priceUpper),
-            amount0Initial,
-            amount1Initial,
-          }))
+          await snapshotGasCost(
+            swapToRatio.getPostSwapPriceGas(poolAddress, {
+              sqrtRatioX96Lower: toSqrtFixedPoint96(priceLower),
+              sqrtRatioX96Upper: toSqrtFixedPoint96(priceUpper),
+              amount0Initial,
+              amount1Initial,
+            })
+          )
         })
       })
 
@@ -170,12 +178,14 @@ describe.only('SwapToRatio', () => {
           amount1Initial = expandTo18Decimals(200_000)
           const currentPrice = (await pool.slot0()).sqrtPriceX96
 
-          await snapshotGasCost(swapToRatio.getPostSwapPriceGas(poolAddress, {
-            sqrtRatioX96Lower: toSqrtFixedPoint96(priceLower),
-            sqrtRatioX96Upper: toSqrtFixedPoint96(priceUpper),
-            amount0Initial,
-            amount1Initial,
-          }))
+          await snapshotGasCost(
+            swapToRatio.getPostSwapPriceGas(poolAddress, {
+              sqrtRatioX96Lower: toSqrtFixedPoint96(priceLower),
+              sqrtRatioX96Upper: toSqrtFixedPoint96(priceUpper),
+              amount0Initial,
+              amount1Initial,
+            })
+          )
         })
       })
     })

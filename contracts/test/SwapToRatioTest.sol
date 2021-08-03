@@ -44,7 +44,10 @@ contract SwapToRatioTest {
     }
 
     function getPostSwapPriceGas(IUniswapV3Pool pool, SwapToRatio.PositionParams memory positionParams)
-      external view returns (uint256) {
+        external
+        view
+        returns (uint256)
+    {
         uint256 gasBefore = gasleft();
         SwapToRatio.getPostSwapPrice(pool, positionParams);
         return gasBefore - gasleft();
